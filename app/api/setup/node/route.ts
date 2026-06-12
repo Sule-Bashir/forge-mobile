@@ -1,0 +1,20 @@
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const script = `#!/data/data/com.termux/files/usr/bin/bash
+# Forge Mobile - Node.js Installer
+echo "📦 Installing Node.js LTS on Termux..."
+pkg update -y
+pkg install -y nodejs-lts
+node --version
+npm --version
+echo "✅ Node.js installed successfully!"
+`;
+
+  return new NextResponse(script, {
+    headers: {
+      'Content-Type': 'text/plain',
+      'Content-Disposition': 'inline'
+    }
+  });
+}
